@@ -8,10 +8,10 @@ public class StudentTm {
     private String Address;
     private String nic;
 
-    public Student() {
+    public StudentTm() {
     }
 
-    public Student(String studentID, String studentname, String email, String contact, String address, String nic) {
+    public StudentTm(String studentID, String studentname, String email, String contact, String address, String nic) {
         setStudentID(studentID);
         setStudentname(studentname);
         this.setEmail(email);

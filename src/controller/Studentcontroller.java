@@ -2,15 +2,21 @@ package controller;
 
 import Db.DbConnection;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Student;
+import view.tm.StudentTm;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Studentcontroller implements Initializable {
@@ -20,14 +26,39 @@ public class Studentcontroller implements Initializable {
     public JFXTextField txtcontact;
     public JFXTextField txtaddress;
     public JFXTextField txtnic;
-    public TableView tblstudent;
+    public TableView<StudentTm> tblstudent;
+    public TableColumn colnic;
+    public TableColumn colsname;
+    public TableColumn colemail;
+    public TableColumn colcontact;
+    public TableColumn coladdress;
+    public TableColumn colStuid;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+        colStuid.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
+        colsname.setCellValueFactory(new PropertyValueFactory<>("Studentname"));
+        colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colcontact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        coladdress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+       colnic.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        loadAllStudent();
+
+        tblstudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            txtSudentID.setText(newValue.getStudentID());
+            txtsname.setText(newValue.getStudentname());
+            txtemail.setText(newValue.getEmail());
+            txtcontact.setText(newValue.getContact());
+            txtaddress.setText(newValue.getAddress());
+            txtnic.setText(newValue.getNic());
+        });
     }
 
-    public void btnsave(ActionEvent actionEvent)  {
+
+        public void btnsave(ActionEvent actionEvent)  {
         Student student =new Student(txtSudentID.getText(),txtsname.getText(),txtemail.getText(),txtcontact.getText(),txtaddress.getText(),txtnic.getText());
         try {
             Connection connection = DbConnection.getInstance().getConnection();
@@ -121,6 +152,35 @@ public class Studentcontroller implements Initializable {
 
 
     }
+    private void loadAllStudent() {
+        ArrayList<Student> students = new ArrayList<>();
+        ObservableList<StudentTm> objects = FXCollections.observableArrayList();
 
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Student");
+            ResultSet rst = preparedStatement.executeQuery();
+
+            while (rst.next()) {
+                students.add(new Student(
+                        rst.getString(1),
+                        rst.getString(2),
+                        rst.getString(3),
+                        rst.getString(4),
+                        rst.getString(5),
+                        rst.getString(6))
+                );
+            }
+            for (Student stu : students) {
+                objects.add(new StudentTm(stu.getStudentID(), stu.getStudentname(), stu.getEmail(), stu.getContact(), stu.getAddress(), stu.getNic()));
+            }
+            tblstudent.setItems(objects);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
