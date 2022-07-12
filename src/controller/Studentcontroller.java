@@ -73,9 +73,27 @@ public class Studentcontroller {
         }
     }
 
-    public void btndelete(ActionEvent actionEvent) {
+    public void btndelete(ActionEvent actionEvent) throws SQLException {
+        Connection connection = null;
+        try {
+             connection = DbConnection.getInstance().getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        PreparedStatement preparedStatement=connection.prepareStatement("DELETE FROM student WHERE student_id=? ");
+        preparedStatement.setObject(1,txtSudentID.getText());
+        int delete= preparedStatement.executeUpdate();
+        if (delete>0){
+            new Alert(Alert.AlertType.CONFIRMATION,"Deleted",ButtonType.OK).show();
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Try again",ButtonType.OK).show();
+        }
+
     }
 
     public void btnsearch(ActionEvent actionEvent) {
+
     }
 }
