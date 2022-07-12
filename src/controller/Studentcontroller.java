@@ -8,10 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import model.Student;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Studentcontroller {
     public JFXTextField txtemail;
@@ -94,6 +91,26 @@ public class Studentcontroller {
     }
 
     public void btnsearch(ActionEvent actionEvent) {
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM student WHERE student_id=? ");
+            preparedStatement.setObject(1,txtSudentID.getText());
+
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                txtsname.setText(resultSet.getString(2));
+                txtemail.setText(resultSet.getString(3));
+                txtcontact.setText(resultSet.getString(4));
+                txtaddress.setText(resultSet.getString(5));
+                txtnic.setText(resultSet.getString(6));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
