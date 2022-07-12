@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import model.Student;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -49,6 +50,27 @@ public class Studentcontroller {
     }
 
     public void btnupdate(ActionEvent actionEvent) {
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE student set " + "student_name=?, email=?, contact=?,address=?, nic=?" + "WHERE  student_id=? ");
+            preparedStatement.setObject(1,txtsname.getText());
+            preparedStatement.setObject(2,txtemail.getText());
+            preparedStatement.setObject(3,txtcontact.getText());
+            preparedStatement.setObject(4,txtaddress.getText());
+            preparedStatement.setObject(5,txtnic.getText());
+            preparedStatement.setObject(6,txtSudentID.getText());
+
+            int update= preparedStatement.executeUpdate();
+            if (update>0){
+                new Alert(Alert.AlertType.CONFIRMATION,"Updated",ButtonType.OK).show();
+            }else {
+                new Alert(Alert.AlertType.WARNING,"Try agian",ButtonType.OK).show();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btndelete(ActionEvent actionEvent) {
