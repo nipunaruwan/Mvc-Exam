@@ -3,14 +3,17 @@ package controller;
 import Db.DbConnection;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import model.Student;
 
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class Studentcontroller {
+public class Studentcontroller implements Initializable {
     public JFXTextField txtemail;
     public JFXTextField txtsname;
     public JFXTextField txtSudentID;
@@ -18,6 +21,11 @@ public class Studentcontroller {
     public JFXTextField txtaddress;
     public JFXTextField txtnic;
     public TableView tblstudent;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     public void btnsave(ActionEvent actionEvent)  {
         Student student =new Student(txtSudentID.getText(),txtsname.getText(),txtemail.getText(),txtcontact.getText(),txtaddress.getText(),txtnic.getText());
@@ -113,4 +121,6 @@ public class Studentcontroller {
 
 
     }
+
+
 }
