@@ -10,18 +10,18 @@
 
 <AnchorPane prefHeight="731.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Studentcontroller">
    <children>
-      <JFXTextField layoutX="50.0" layoutY="176.0" prefHeight="37.0" prefWidth="289.0" promptText="e mail" />
-      <JFXTextField layoutX="556.0" layoutY="77.0" prefHeight="37.0" prefWidth="289.0" promptText="Studentname" />
-      <JFXTextField layoutX="51.0" layoutY="79.0" prefHeight="37.0" prefWidth="289.0" promptText="StudentID" />
-      <JFXTextField layoutX="563.0" layoutY="181.0" prefHeight="37.0" prefWidth="289.0" promptText="contact" />
-      <JFXTextField layoutX="43.0" layoutY="296.0" prefHeight="37.0" prefWidth="289.0" promptText="Address" />
-      <JFXTextField layoutX="563.0" layoutY="289.0" prefHeight="37.0" prefWidth="289.0" promptText="nic" />
-      <Text layoutX="382.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student form">
+      <JFXTextField fx:id="txtemail" layoutX="50.0" layoutY="176.0" prefHeight="37.0" prefWidth="289.0" promptText="e mail" />
+      <JFXTextField fx:id="txtsname" layoutX="556.0" layoutY="77.0" prefHeight="37.0" prefWidth="289.0" promptText="Studentname" />
+      <JFXTextField fx:id="txtSudentID" layoutX="51.0" layoutY="79.0" prefHeight="37.0" prefWidth="289.0" promptText="StudentID" />
+      <JFXTextField fx:id="txtcontact" layoutX="563.0" layoutY="181.0" prefHeight="37.0" prefWidth="289.0" promptText="contact" />
+      <JFXTextField fx:id="txtaddress" layoutX="43.0" layoutY="296.0" prefHeight="37.0" prefWidth="289.0" promptText="Address" />
+      <JFXTextField fx:id="txtnic" layoutX="563.0" layoutY="289.0" prefHeight="37.0" prefWidth="289.0" promptText="nic" />
+      <Text layoutX="376.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student form">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Text>
-      <TableView layoutX="33.0" layoutY="392.0" prefHeight="277.0" prefWidth="890.0">
+      <TableView fx:id="tblstudent" layoutX="33.0" layoutY="392.0" prefHeight="277.0" prefWidth="890.0">
         <columns>
           <TableColumn prefWidth="150.0" text="StudentID" />
           <TableColumn minWidth="0.0" prefWidth="0.0" text="C2" />
