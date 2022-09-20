@@ -5,4 +5,5 @@
 ![CustomerBookingDetaits](https://user-images.githubusercontent.com/92322715/191242979-290b19c7-b346-4b69-bc84-abd0c9da3c11.PNG)
 ![BlueOceanHotelIncomeTax](https://user-images.githubusercontent.com/92322715/191243008-8ea40680-3d24-44d5-a22b-e24dcb292ae0.PNG)
 ![CreateNewAccount](https://user-images.githubusercontent.com/92322715/191243011-952b8459-bc47-4ae9-aa3c-e413147381c1.PNG)
-![Dashboardform](https://user-images.githubusercontent.com/92322715/191243065-adb5929b-7643-4278-a0c0-50beefe8e02d.PNG)
+
+![RoomDetails Detailoffooddetails](https://user-images.githubusercontent.com/92322715/191243536-900f487a-3eca-4d18-ad32-2b6448876b0e.PNG)
